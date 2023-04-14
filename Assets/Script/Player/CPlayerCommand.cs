@@ -6,7 +6,6 @@ using UnityEngine;
 public class CPlayerCommand : MonoBehaviour
 {
     public GameObject slashEffect;
-
     enum EMotion
     {
         eIdle,
@@ -46,28 +45,27 @@ public class CPlayerCommand : MonoBehaviour
         switch (motionNumber)
         {
             case EMotion.eNormalAttack:
-                switch (combo)
-                {
-                    case 0:
-                        sEffect.transform.localRotation = Quaternion.Euler(0, 0, 180);
-                        yield return new WaitForSeconds(0.2f);
-                        combo++;
-                        break;
-                    case 1:
-                        sEffect.transform.localRotation = Quaternion.Euler(0, 0, 90);
-                        yield return new WaitForSeconds(0.12f);
-                        combo++;
-                        break;
-                    case 2:
-                        yield return new WaitForSeconds(1.2f);
-                        combo = 0;
-                        break;
-                }
 
-                isNowAction = false;
+                if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack_3Combo_2"))
+                {
+                    sEffect.transform.localRotation = Quaternion.Euler(0, 0, -46);
+
+                    yield return new WaitForSeconds(1.2f);
+                }
+                else if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack_3Combo_1"))
+                {
+                    sEffect.transform.localRotation = Quaternion.Euler(0, 0, 90);
+                    yield return new WaitForSeconds(0.12f);
+                }
+                else
+                {
+                    sEffect.transform.localRotation = Quaternion.Euler(0, 0, 180 - 14f);
+                    yield return new WaitForSeconds(0.2f);
+                }
                 break;
         }
 
+        isNowAction = false;
         yield return null;
     }
 }
