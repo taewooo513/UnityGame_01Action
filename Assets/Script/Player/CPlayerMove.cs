@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CPlayerMove : MonoBehaviour
+public class CPlayerMove : CComponent
 {
-    private CharacterController playerController;
+    public CharacterController playerController { get; private set; }
     private Animator playerAnimator;
     private Transform cameraTransform;
     private Transform cameraTransformParent;
@@ -15,7 +15,7 @@ public class CPlayerMove : MonoBehaviour
 
     public float runSpeed = 4f;
     public float rotationSpeed = 360;
-    public float gravity = 10.0f;
+    public float gravity = 8.0f;
     public float mouseSensitivity = 2.0f;
 
     private Vector3 move;
@@ -37,21 +37,26 @@ public class CPlayerMove : MonoBehaviour
     {
         Balance();
         playerModel.transform.localPosition = new Vector3(0, 0, 0);
-        if (playerCommand.isNowAction == false)
+
+        if (playerController.isGrounded)
         {
-            if (playerController.isGrounded)
+            GroundChecking();
+            MovePlayer(1.0f);
+        }
+        else
+        {
+            move.y -= gravity * Time.deltaTime;
+            MovePlayer(0.01f);
+        }
+
+        if (playerModel.TryGetComponent(out CPlayerCommand command) == true)
+        {
+            if (command.isSkill4 == false)
             {
-                GroundChecking();
-                MovePlayer(1.0f);
-            }
-            else
-            {
-                move.y -= gravity * Time.deltaTime;
-                MovePlayer(0.01f);
+                playerController.Move(move * Time.deltaTime);
             }
         }
 
-        playerController.Move(move * Time.deltaTime);
     }
 
     private void LateUpdate()
@@ -62,7 +67,7 @@ public class CPlayerMove : MonoBehaviour
         mouseMove +=
             new Vector3(
                 0,
-                Input.GetAxisRaw("Mouse X") * mouseSensitivity, 0);
+                Input.GetAxisRaw("Mouse X") * mouseSensitivity, -Input.GetAxisRaw("Mouse Y") * mouseSensitivity);
 
         if (mouseMove.x < -5)
         {
@@ -71,6 +76,15 @@ public class CPlayerMove : MonoBehaviour
         else if (50 < mouseMove.x)
         {
             mouseMove.x = 50;
+        }
+
+        if (mouseMove.z < -20)
+        {
+            mouseMove.z = -20;
+        }
+        else if (10 < mouseMove.z)
+        {
+            mouseMove.z = 10;
         }
 
         cameraTransformParent.localEulerAngles = mouseMove;
@@ -97,6 +111,11 @@ public class CPlayerMove : MonoBehaviour
             Input.GetAxis("Horizontal")
         );
 
+        if (playerCommand.isNowAction == true || playerCommand.isDooge == true)
+        {
+            inputMoveXZ = Vector3.zero;
+        }
+
         //대각선 이동 자체가 루트 2배의 속도를 갖는 것을 막기 위해서 속도가 1 이상 되면 그냥 노말라이즈 시킨다.
         //  -> 속도 곱해서 -> 정규화
 
@@ -120,7 +139,7 @@ public class CPlayerMove : MonoBehaviour
             Quaternion cameraRotation = cameraTransformParent.rotation;
 
             //코스트 절약을 해주고 -> 연산 x
-            cameraRotation.x = cameraRotation.z = 0;
+            cameraRotation.x = 0;
 
             transform.rotation = Quaternion.Slerp
             (

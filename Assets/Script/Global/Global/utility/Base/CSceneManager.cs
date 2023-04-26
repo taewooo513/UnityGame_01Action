@@ -69,7 +69,6 @@ public class CSceneManager : CComponent
         if (CSceneManager.UICamera != null)
         {
             CSceneManager.UICamera.orthographic = true;
-            CSceneManager.UICamera.orthographicSize = Kdefine.SCREEN_HEIGHT / 2.0f * Kdefine.UNIT_SCALE;
         }
     }
 
@@ -78,11 +77,11 @@ public class CSceneManager : CComponent
         if (CSceneManager.MainCamera != null)
         {
             // FOV 
-            float fPlaneHeight = (Kdefine.SCREEN_HEIGHT / 2.0f) * Kdefine.UNIT_SCALE;
-            float fFieldOfView = Mathf.Atan(fPlaneHeight / m_fPlaneDistance);
-
-            CSceneManager.MainCamera.orthographic = false;
-            CSceneManager.MainCamera.fieldOfView = (fFieldOfView * 2.0f) * Mathf.Rad2Deg;
+            //float fPlaneHeight = (Kdefine.SCREEN_HEIGHT / 2.0f) * Kdefine.UNIT_SCALE;
+            //float fFieldOfView = Mathf.Atan(fPlaneHeight / m_fPlaneDistance);
+            //
+            //CSceneManager.MainCamera.orthographic = false;
+            //CSceneManager.MainCamera.fieldOfView = (fFieldOfView * 2.0f) * Mathf.Rad2Deg;
         }
     }
 }

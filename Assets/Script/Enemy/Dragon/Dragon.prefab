@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6586222848826732409
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5166782054302604778}
+  - component: {fileID: 3107268606853013219}
+  m_Layer: 0
+  m_Name: Dragon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5166782054302604778
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6586222848826732409}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6676019575482708418}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3107268606853013219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6586222848826732409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53611d2dbed51c14ea5ed6cec72efa9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dragonModel: {fileID: 6676019575482708418}
+--- !u!1001 &8592805064937271707
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5166782054302604778}
+    m_Modifications:
+    - target: {fileID: 3141888289606205529, guid: a1e28cc5277b74ff0ad8566e5e54bee5, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3141888289606205529, guid: a1e28cc5277b74ff0ad8566e5e54bee5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3141888289606205529, guid: a1e28cc5277b74ff0ad8566e5e54bee5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3141888289606205529, guid: a1e28cc5277b74ff0ad8566e5e54bee5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3141888289606205529, guid: a1e28cc5277b74ff0ad8566e5e54bee5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3141888289606205529, guid: a1e28cc5277b74ff0ad8566e5e54bee5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3141888289606205529, guid: a1e28cc5277b74ff0ad8566e5e54bee5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3141888289606205529, guid: a1e28cc5277b74ff0ad8566e5e54bee5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3141888289606205529, guid: a1e28cc5277b74ff0ad8566e5e54bee5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3141888289606205529, guid: a1e28cc5277b74ff0ad8566e5e54bee5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3141888289606205529, guid: a1e28cc5277b74ff0ad8566e5e54bee5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3141888289606704249, guid: a1e28cc5277b74ff0ad8566e5e54bee5, type: 3}
+      propertyPath: m_Name
+      value: Dragon_LP
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a1e28cc5277b74ff0ad8566e5e54bee5, type: 3}
+--- !u!4 &6676019575482708418 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3141888289606205529, guid: a1e28cc5277b74ff0ad8566e5e54bee5, type: 3}
+  m_PrefabInstance: {fileID: 8592805064937271707}
+  m_PrefabAsset: {fileID: 0}
