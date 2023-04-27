@@ -29,7 +29,8 @@ public class CPlayerCommand : CComponent
         eSkill2,
         eSkill3,
         eSkill4,
-        eSkill5
+        eSkill5,
+        eSkill6
     }
     private Animator playerAnimator;
     private int combo;
@@ -99,6 +100,13 @@ public class CPlayerCommand : CComponent
                     playerAnimator.SetTrigger("Skill_3");
                     isDone = StartCoroutine(ComboSystem(EMotion.eSkill3));
                 }
+                if (Input.GetKeyDown(KeyCode.Alpha6))
+                {
+                    isNowAction = true;
+                    playerAnimator.SetTrigger("Skill_6");
+                    Time.timeScale = 0.01f;
+                    isDone = StartCoroutine(ComboSystem(EMotion.eSkill6));
+                }
             }
             if (Input.GetKeyDown(KeyCode.LeftShift) && isSkill2Up == false && isSkill4Up == false)
             {
@@ -106,7 +114,10 @@ public class CPlayerCommand : CComponent
                 isSkill2Up = false;
                 isSkill4Up = false;
                 isNowAction = false;
-                StopCoroutine(isDone);
+                if (isDone != null)
+                {
+                    StopCoroutine(isDone);
+                }
                 playerAnimator.SetTrigger("dooge");
                 vec3Nor = transform.forward;
                 StartCoroutine("DoogiAnimation");
@@ -116,7 +127,7 @@ public class CPlayerCommand : CComponent
             {
 
             }
-            
+
         }
         if (isSkill2Up == true)
         {
@@ -128,9 +139,7 @@ public class CPlayerCommand : CComponent
         }
         if (isDoogeMove == true)
         {
-            GetComponentInParent<CPlayerMove>()?.playerController.Move(vec3Nor * Time.deltaTime * 3);
-            var obj = Instantiate(footStep, transform.position, Quaternion.identity);
-            DestroyObject(obj, 0.5f);
+            GetComponentInParent<CPlayerMove>()?.playerController.Move(vec3Nor * Time.deltaTime * 10);
         }
 
     }
