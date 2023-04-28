@@ -12,6 +12,9 @@ public class CPlayerCommand : CComponent
     private bool isDoogeMove = false;
     private bool isSkill2Up = false;
     private bool isSkill4Up = false;
+    private bool isSpecialAttackEffectUI = false;
+
+    public Transform specialAttackEffectUI = null;
     private Coroutine isDone = null;
     public GameObject skill4Effect_1;
     public GameObject skill4Effect_2;
@@ -44,9 +47,24 @@ public class CPlayerCommand : CComponent
         combo = 0;
     }
 
+    private void FixedUpdate()
+    {
+
+    }
 
     void Update()
     {
+        if (isSpecialAttackEffectUI == true)
+        {
+            if (specialAttackEffectUI.position.x >= 128)
+            {
+                specialAttackEffectUI.Translate(-2000 * Time.unscaledDeltaTime, 0, 0);
+            }
+            else
+            {
+                specialAttackEffectUI.Translate(-300 * Time.unscaledDeltaTime, 0, 0);
+            }
+        }
         if (playerAnimator != null)
         {
             if (playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Dodge_Front"))
@@ -82,6 +100,10 @@ public class CPlayerCommand : CComponent
                     var obj = Instantiate(windMill, transform);
                     DestroyObject(obj, 1.5f);
                 }
+                if (Input.anyKeyDown)
+                {
+                    Debug.Log("dsaopif");
+                }
                 if (Input.GetKeyDown(KeyCode.Alpha5))
                 {
                     isNowAction = true;
@@ -103,6 +125,7 @@ public class CPlayerCommand : CComponent
                 if (Input.GetKeyDown(KeyCode.Alpha6))
                 {
                     isNowAction = true;
+                    isSpecialAttackEffectUI = true;
                     playerAnimator.SetTrigger("Skill_6");
                     Time.timeScale = 0.01f;
                     isDone = StartCoroutine(ComboSystem(EMotion.eSkill6));
@@ -212,7 +235,6 @@ public class CPlayerCommand : CComponent
                 }
                 break;
             case EMotion.eSkill1:
-
                 break;
             case EMotion.eSkill3:
                 break;
@@ -246,6 +268,8 @@ public class CPlayerCommand : CComponent
                 yield return new WaitForSeconds(.8f);
                 var obj5 = Instantiate(skill5Effect, transform.position, transform.rotation);
                 obj5.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                break;
+            case EMotion.eSkill6:
                 break;
         }
 
